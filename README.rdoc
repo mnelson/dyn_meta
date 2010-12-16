@@ -1,19 +1,70 @@
-= dyn_meta
+= DynMeta
 
-Description goes here.
+Automate the lookup of page meta information based on the current request. Meta information such as page titles and descriptions can be stored in a translations file rather than floating around in controllers or views.
 
-== Contributing to dyn_meta
+== Installation
+
+Add dyn_meta to your Gemfile
+
+ gem 'dyn_meta', :git => 'git://github.com/mnelson/dyn_meta.git'
+
+Install the gem
+
+ bundle install
  
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+== Usage
 
-== Copyright
+Set up your translations as follows:
 
-Copyright (c) 2010 Mike Nelson. See LICENSE.txt for
-further details.
+ en:
+  <meta key pluralized>:
+   <controller>:
+    <action>:
+     <id>: "Some meta value"
 
+For example:
+
+ en:
+  page_titles:
+   users:
+    new: "Create Your Account"
+    edit: "Update Your Account"
+
+You usually won't go down to the _id_ level but occasionally it's useful:
+
+ en:
+  page_titles:
+   pages:
+    show:
+     tos: "Terms of Service"
+     pp: "Privacy Policy"
+     about: "About My Site"
+
+You can define catch-alls via the _default_ key:
+
+ en:
+  page_titles:
+   default: "My Super Site"
+   users:
+    default: "Manage Your Account"
+    new: "Create Your Account"
+    edit: "Update Your Account"
+    
+
+DynMeta provides one method *page_detail*. It's both a setter and a getter. Just use the *page_detail* method in your template:
+
+ <title><%= page_detail(:page_title) %></title>
+ <meta name="description" content="<%= page_detail(:page_description) %>" />
+ 
+Alternatively, DynMeta matches any method starting with *page_* so you could just do:
+
+ <title><%= page_title %></title>
+ <meta name="description" content="<%= page_description %>" />
+ 
+If you'd like to override meta content you can just pass a value to the page_detail method:
+
+ def show
+  @user = User.find(params[:id])
+  page_detail(:page_title, "#{@user.display_name} :: Profile")
+ end
+ 
