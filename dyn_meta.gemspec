@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "dyn_meta.gemspec",
     "features/dyn_meta.feature",
     "features/step_definitions/dyn_meta_steps.rb",
     "features/support/env.rb",
