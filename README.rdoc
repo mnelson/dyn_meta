@@ -61,6 +61,13 @@ Alternatively, DynMeta matches any method starting with *page_* so you could jus
  <title><%= page_title %></title>
  <meta name="description" content="<%= page_description %>" />
  
+Be sure to add the *page_* methods as helpers in your application controller:
+
+ class ApplicationController < ActionController::Base
+
+  helper_method :page_title,
+                :page_description
+ 
 If you'd like to override meta content you can just pass a value to the page_detail method:
 
  def show

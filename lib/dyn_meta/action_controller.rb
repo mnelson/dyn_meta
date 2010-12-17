@@ -1,6 +1,12 @@
 module DynMeta
   module ActionController
     
+    def self.included(base)
+      base.class_eval do
+        helper_method :page_detail
+      end
+    end
+    
     def method_missing(method_name, *args)
       if method_name.to_s =~ /^page_/
         page_detail(method_name)
