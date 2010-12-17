@@ -6,7 +6,7 @@ Automate the lookup of page meta information based on the current request. Meta 
 
 Add dyn_meta to your Gemfile
 
- gem 'dyn_meta', :git => 'git://github.com/mnelson/dyn_meta.git'
+ gem 'dyn_meta'
 
 Install the gem
 
