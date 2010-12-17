@@ -15,7 +15,7 @@ module DynMeta
       end
     end
     
-    def respond_to?(method_name)
+    def respond_to?(method_name, include_private = false)
       method_name.to_s =~ /^page_/ || super
     end
     
