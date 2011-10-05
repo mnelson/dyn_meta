@@ -9,31 +9,30 @@ describe "DynMeta" do
   
   it "should have dyn_meta methods included" do
     a = controller
-    a.respond_to?(:page_detail).should be_true
-    a.respond_to?(:page_title).should be_true
+    a.respond_to?(:meta).should be_true
   end
   
   it "should define instance variables when they don't exist" do
     a = controller
-    a.page_detail(:page_title, 'value')
-    a.instance_variable_get('@page_title').should eql('value')
+    a.instance_variable_get('@meta_title').should be_nil
+    a.meta(:title, 'value')
+    a.instance_variable_get('@meta_title').should eql('value')
   end
   
   it "should return nil when trans hash doesn't exist" do
     a = controller
-    a.page_description.should be_nil
+    a.meta(:description).should be_nil
   end 
   
   it "should look at controller action and id for translations" do
     a = controller(:controller => 'users', :action => 'edit')
-    a.page_title.should eql("Update your account")
+    a.meta(:title).should eql("Update your account")
+    a.meta(:title).should eql("Update your account")
   end
   
   it "should fall back to default values" do
-    a = controller
-    a.page_title.should eql("Users, this is for you")
-    a.params = {:controller => 'organizations'}
-    a.page_title.should eql("My Great Startup Idea")
+    controller.meta(:title).should eql("Users, this is for you")
+    controller({:controller => 'organizations'}).meta(:title).should eql("My Great Startup Idea")
   end
   
   

@@ -1,7 +1,8 @@
 en:
   foo: bar
-  page_titles:
-    default: "My Great Startup Idea"
-    users:
-      default: "Users, this is for you"
-      edit: "Update your account"
+  meta:
+    titles:
+      default: "My Great Startup Idea"
+      users:
+        default: "Users, this is for you"
+        edit: "Update your account"

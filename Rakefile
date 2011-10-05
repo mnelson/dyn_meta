@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "dyn_meta"
   gem.homepage = "http://github.com/mnelson/dyn_meta"
   gem.license = "MIT"
-  gem.summary = %Q{Automate the lookup of page meta information based on the current request}
-  gem.description = %Q{Automate the lookup of page meta information based on the current request. Meta information such as page titles and descriptions can be stored in a translations file rather than floating around in controllers or views.}
+  gem.summary = %Q{Automate the lookup of page meta information based on the current request context}
+  gem.description = %Q{Automate the lookup of page meta information based on the current request context. Meta information such as page titles and descriptions can be stored in a translations file rather than floating around in controllers or views.}
   gem.email = "mike@mikeonrails.com"
   gem.authors = ["Mike Nelson"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,

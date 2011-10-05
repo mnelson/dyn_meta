@@ -1,6 +1,10 @@
 = DynMeta
 
-Automate the lookup of page meta information based on the current request. Meta information such as page titles and descriptions can be stored in a translations file rather than floating around in controllers or views.
+Automate the lookup of page meta information based on the current request context. Meta information such as page titles and descriptions can be stored in a translations file rather than floating around in controllers or views.
+
+== Please Note
+
+The usage of dyn_meta has changed from *page_* methods to a simple *meta* method.
 
 == Installation
 
@@ -17,61 +21,53 @@ Install the gem
 Set up your translations as follows:
 
  en:
-  <meta key pluralized>:
-   <controller>:
-    <action>:
-     <id>: "Some meta value"
+  meta:
+   <meta key pluralized>:
+    <controller>:
+     <action>:
+      <id>: "Some meta value"
 
 For example:
 
  en:
-  page_titles:
-   users:
-    new: "Create Your Account"
-    edit: "Update Your Account"
+  meta:
+   titles:
+    users:
+     new: "Create Your Account"
+     edit: "Update Your Account"
 
 You usually won't go down to the _id_ level but occasionally it's useful:
 
  en:
-  page_titles:
-   pages:
-    show:
-     tos: "Terms of Service"
-     pp: "Privacy Policy"
-     about: "About My Site"
+  meta:
+   titles:
+    pages:
+     show:
+      tos: "Terms of Service"
+      pp: "Privacy Policy"
+      about: "About My Site"
 
 You can define catch-alls via the _default_ key:
 
  en:
-  page_titles:
-   default: "My Super Site"
-   users:
-    default: "Manage Your Account"
-    new: "Create Your Account"
-    edit: "Update Your Account"
+  meta:
+   titles:
+    default: "My Super Site"
+    users:
+     default: "Manage Your Account"
+     new: "Create Your Account"
+     edit: "Update Your Account"
     
 
-DynMeta provides one method *page_detail*. It's both a setter and a getter. Just use the *page_detail* method in your template:
+DynMeta provides one method *meta*. It's both a setter and a getter. Just use the *meta* method in your template:
 
- <title><%= page_detail(:page_title) %></title>
- <meta name="description" content="<%= page_detail(:page_description) %>" />
+ <title><%= meta(:title) %></title>
+ <meta name="description" content="<%= meta(:description) %>" />
  
-Alternatively, DynMeta matches any method starting with *page_* so you could just do:
-
- <title><%= page_title %></title>
- <meta name="description" content="<%= page_description %>" />
- 
-Be sure to add the *page_* methods as helpers in your application controller:
-
- class ApplicationController < ActionController::Base
-
-  helper_method :page_title,
-                :page_description
- 
-If you'd like to override meta content you can just pass a value to the page_detail method:
+If you'd like to override meta content you can just pass a value to the *meta* method:
 
  def show
   @user = User.find(params[:id])
-  page_detail(:page_title, "#{@user.display_name} :: Profile")
+  meta(:title, "#{@user.display_name} :: Profile")
  end
  
