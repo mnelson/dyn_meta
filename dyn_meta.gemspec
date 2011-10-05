@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{dyn_meta}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mike Nelson"]
-  s.date = %q{2010-12-17}
-  s.description = %q{Automate the lookup of page meta information based on the current request. Meta information such as page titles and descriptions can be stored in a translations file rather than floating around in controllers or views.}
+  s.date = %q{2011-10-05}
+  s.description = %q{Automate the lookup of page meta information based on the current request context. Meta information such as page titles and descriptions can be stored in a translations file rather than floating around in controllers or views.}
   s.email = %q{mike@mikeonrails.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Automate the lookup of page meta information based on the current request}
+  s.summary = %q{Automate the lookup of page meta information based on the current request context}
   s.test_files = [
     "spec/dyn_meta_spec.rb",
     "spec/spec_helper.rb"
