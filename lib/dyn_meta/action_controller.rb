@@ -13,7 +13,7 @@ module DynMeta
       return instance_variable_set(in_name, val) if val.present?
       return instance_variable_get(in_name) if instance_variable_get(in_name)
       
-      trans = I18n.translate("meta.#{name.to_s.pluralize}") || {}
+      trans = I18n.translate("meta")[name.to_s.pluralize] || {}
       hash = trans
       [:controller, :action, :id].each do |p|
         val = params[p] && hash[params[p].to_s.to_sym] || nil
