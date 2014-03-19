@@ -21,6 +21,10 @@ RSpec.configure do |config|
 
   config.before :suite do
 
+    require "i18n/backend/fallbacks"
+    I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
+    I18n.fallbacks.map(:"en-US" => :en)
+
     I18n.backend.store_translations(:en, {
       'meta' => {
         'page_titles' => {
@@ -44,6 +48,14 @@ RSpec.configure do |config|
               'tos' => 'pages,show,tos,dyn_meta'
             }
           }
+        }
+      }
+    })
+
+    I18n.backend.store_translations(:"en-US", {
+      'meta' => {
+        'page_titles' => {
+          'default' => 'Default page title in the US'
         }
       }
     })

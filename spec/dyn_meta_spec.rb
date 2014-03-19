@@ -14,6 +14,10 @@ describe DynMeta::Helper do
   let(:params){ {:controller => 'testing', :action => 'show'} }
   let(:c){ Controller.new(params) }
 
+  before do
+    I18n.locale = :en
+  end
+
   it 'should integrate for testing properly' do
     c.params.should eql(params)
     c.should respond_to(:meta)
@@ -53,4 +57,19 @@ describe DynMeta::Helper do
     c.meta(:keywords).should eql('dyn_meta')
   end
 
+  context do
+    before do
+      I18n.locale = :"en-US"
+    end
+
+    it 'should use the correct backups when a locale key is missing' do
+      params.merge!(:controller => 'testing', action: 'show')
+      c.meta(:page_title).should eql('Testing controller show action page title')
+    end
+
+    it 'should use the locale key if present' do
+      params.merge!(:controller => 'anything', action: 'other')
+      c.meta(:page_title).should eql('Default page title in the US')
+    end
+  end
 end
