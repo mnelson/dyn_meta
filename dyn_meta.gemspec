@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = DynMeta::VERSION
   gem.authors       = ["Mike Nelson"]
   gem.email         = ["mike@mikeonrails.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Simple translation lookup based on the current request context.}
+  gem.summary       = %q{Simple request-based translation lookup.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)

@@ -19,7 +19,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 
-  config.before :suite do 
+  config.before :suite do
 
     I18n.backend.store_translations(:en, {
       'meta' => {
