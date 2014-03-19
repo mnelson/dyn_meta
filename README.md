@@ -11,8 +11,16 @@ Add dyn_meta to your Gemfile
 Install the gem
 
  bundle install
- 
+
 ## Usage
+
+Add DynMeta::Helper as a helper:
+
+```ruby
+# application_controller.rb
+include DynMeta::Helper
+helper :meta
+```
 
 Set up your translations as follows:
 
@@ -60,7 +68,7 @@ en:
         default: "Manage Your Account"
         new: "Create Your Account"
         edit: "Update Your Account"
-``` 
+```
 
 DynMeta provides one method *meta*. It's both a setter and a getter. Just use the *meta* method in your template:
 
@@ -86,4 +94,4 @@ def show
   meta(:title, :name => @user.display_name})
 end
 ```
- 
+
