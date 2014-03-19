@@ -2,24 +2,13 @@
 
 Automate the lookup of page meta information based on the current request context. Meta information such as page titles and descriptions can be stored in a translations file rather than floating around in controllers or views.
 
-## Installation
-
-Add dyn_meta to your Gemfile
-
- gem 'dyn_meta'
-
-Install the gem
-
- bundle install
-
 ## Usage
 
-Add DynMeta::Helper as a helper:
+Add DynMeta::Helper to your app:
 
 ```ruby
 # application_controller.rb
-include DynMeta::Helper
-helper :meta
+helper DynMeta::Helper
 ```
 
 Set up your translations as follows:
